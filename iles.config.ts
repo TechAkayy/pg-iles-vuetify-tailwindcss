@@ -58,6 +58,28 @@ export default defineConfig({
         } as LiveDesignerOptions,
       },
     ],
+    {
+      name: 'vuetify-module',
+      configResolved(config) {
+        config.vitePlugins.push(
+          Vuetify({
+            /* If customizing sass variables of vuetify components */
+            styles: {
+              configFile: 'src/assets/vuetify/settings.scss',
+            },
+            // ...
+          }),
+        )
+
+        // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#image-loading
+        //@ts-ignore
+        config.vue.template.transformAssetUrls = {
+          //@ts-ignore
+          ...(config.vue.template.transformAssetUrls || {}),
+          ...transformAssetUrls,
+        }
+      },
+    },
     // ...
   ],
 
@@ -112,8 +134,8 @@ export default defineConfig({
 
   vue: {
     template: {
-      // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#image-loading
-      transformAssetUrls,
+      // // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#image-loading
+      // transformAssetUrls,
       compilerOptions: {
         isCustomElement: (tag) => tag === 'lite-youtube',
       },
@@ -161,48 +183,6 @@ export default defineConfig({
           },
         },
       }),
-      {
-        name: 'vuetify-plugin',
-        configResolved(config) {
-          const idx_vue = config.plugins.findIndex(
-            (plugin) => plugin.name && plugin.name === 'vite:vue',
-          )
-          const vuetifyPlugins = Vuetify({
-            /* If customizing sass variables of vuetify components */
-            styles: {
-              configFile: 'src/assets/vuetify/settings.scss',
-            },
-            // ...
-          })
-          const vuetifyImportPlugin = vuetifyPlugins.find(
-            (plugin) => plugin.name && plugin.name === 'vuetify:import',
-          )
-
-          if (vuetifyImportPlugin) {
-            // @ts-ignore
-            config.plugins.splice(idx_vue + 1, 0, vuetifyImportPlugin)
-            // @ts-ignore
-            vuetifyImportPlugin.configResolved(config)
-          }
-
-          const vuetifyStylesPlugin = vuetifyPlugins.find(
-            (plugin) => plugin.name && plugin.name === 'vuetify:styles',
-          )
-          if (vuetifyStylesPlugin) {
-            // @ts-ignore
-            config.plugins.splice(idx_vue + 2, 0, vuetifyStylesPlugin)
-            // @ts-ignore
-            vuetifyStylesPlugin.configResolved(config)
-          }
-        },
-      },
-      // Vuetify({
-      //   /* If customizing sass variables of vuetify components */
-      //   styles: {
-      //     configFile: 'src/assets/vuetify/settings.scss',
-      //   },
-      //   //...
-      // }),
       VueDevTools(),
     ],
     ssr: {
