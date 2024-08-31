@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "useDefineForClassFields": true,
+    /* Please ensure that you update the filenames and paths to accurately match those used in your project. */
+    "baseUrl": "./",
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["src/*"],
+      "~~/*": ["*"]
+    },
+    "resolveJsonModule": true,
+    "types": ["node", "vuetify"],
+    "allowJs": true,
+    "strict": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "themes/**/*",
+    "vuetify.config.ts",
+    "src/**/*",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "composables.d.ts"
+  ],
+  "exclude": ["**/node_modules/**", "**/dist/**"]
+}
