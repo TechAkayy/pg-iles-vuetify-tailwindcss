@@ -21,8 +21,6 @@
             <v-img
               v-if="imageOptimized"
               :src="imageOptimized.src"
-              :srcset="imageOptimized.srcset"
-              :sizes="imageOptimized.sizes"
               height="250"
             />
             <v-img v-else :src="image" height="250" />

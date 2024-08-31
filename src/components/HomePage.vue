@@ -4,7 +4,6 @@
 
   const app = getCurrentInstance().appContext.app
   app.use(vuetify)
-  console.log(app)
 </script>
 
 <template>

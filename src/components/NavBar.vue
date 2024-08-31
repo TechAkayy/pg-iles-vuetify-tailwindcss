@@ -4,15 +4,16 @@
 
   const app = getCurrentInstance().appContext.app
   app.use(vuetify)
-  console.log(app)
+
   const { isMobileMenuOpen } = useMobileMenu()
 </script>
 
 <template>
-  <v-app
-    class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50"
+  <v-layout
+    class="!min-h-fit bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50"
+    :fullHeight="false"
   >
-    <div class="px-4">
+    <div class="px-4 w-full">
       <nav class="h-full navbar-grid py-4">
         <div style="grid-area: logo" class="flex justify-center">
           <TheLogo />
@@ -101,7 +102,7 @@
         </v-navigation-drawer>
       </div>
     </div>
-  </v-app>
+  </v-layout>
 </template>
 
 <style scoped>

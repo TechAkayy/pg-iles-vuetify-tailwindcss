@@ -76,6 +76,9 @@ export default antfu(
       'unicorn/consistent-function-scoping': 'off',
       'regexp/optimal-lookaround-quantifier': 'off',
       'ts/no-unused-expressions': 'off',
+      'style/indent': 'off',
+      'format/prettier': 'off',
+      'style/arrow-parens': 'off',
     },
   },
 )
